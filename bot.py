@@ -17,16 +17,15 @@ async def delta_key(interaction, hwid):
     if hwid.startswith('https://gateway.platoboost.com/a/8?id='):
         hwid = hwid.replace('https://gateway.platoboost.com/a/8?id=', '')
 
-    code = "veru"
+    code = "cacc"
 
     payload = {
         "captcha":"",
-        "type":"Turnstile"
+        "type":""
     }
 
     session = requests.Session()
     session.post(f"https://api-gateway.platoboost.com/v1/sessions/auth/8/{hwid}", json=payload)
-    session.put(f"https://api-gateway.platoboost.com/v1/sessions/auth/8/{hwid}/{code}")
     await asyncio.sleep(5)
     session.put(f"https://api-gateway.platoboost.com/v1/sessions/auth/8/{hwid}/{code}")
     response = session.get(f"https://api-gateway.platoboost.com/v1/authenticators/8/{hwid}").text
